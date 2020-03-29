@@ -28,14 +28,18 @@ const TitleContainer = styled.div`
 `;
 
 const Search = ({data, setToken}) => {
+  const resetToken = () => {
+    setToken('');
+    localStorage.setItem('githubToken', '');
+  }
+  if (!data || !data.viewer || !data.viewer.login) {
+    resetToken();
+    return <Loading />;
+  }
   const [ organizationRepositories, setOrganizationRepositories ] = useState('')
   const [ orgName, setOrgName ] = useState('');
   const [ error, setError ] = useState('');
   const [ loading, setLoading] = useState(false);
-  const onClickUnauth = () => {
-    setToken('');
-    localStorage.setItem('githubToken', '');
-  }
   const onClick = (inputData, extraprops, disable) => {
     setLoading(true);
     setOrganizationRepositories('')
@@ -59,7 +63,7 @@ const Search = ({data, setToken}) => {
   const inputs = [
     {type: 'input', variable: 'organization', value: ''},
     {type: 'button', onClick: onClick, description: res.find, canLoad: true, size: BUTTON_SIZES.MEDIUM, required: [0]},
-    {type: 'button', onClick: onClickUnauth, description: res.unAuth, size: BUTTON_SIZES.MEDIUM},
+    {type: 'button', onClick: resetToken, description: res.unAuth, size: BUTTON_SIZES.MEDIUM},
   ];
   return (
     <div>
