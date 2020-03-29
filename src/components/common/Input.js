@@ -18,7 +18,7 @@ export default ({labelText, linkText, link, defaultText, currText = '', type, on
   }
   return (
     <Container>
-      {labelText && <div>{`${labelText}${linkText && ' - '}`}{linkText && <a href={link} target="_blank">{linkText}</a>}{required && res.required}</div>}
+      {labelText && <div>{`${labelText}${linkText ? ' - ' : ''}`}{linkText && <a href={link} target="_blank">{linkText}</a>}{required && res.required}</div>}
       <StyledInput onChange={onChange} onBlur={() => onBlur(text)} value={text}/>
     </Container>
   )
