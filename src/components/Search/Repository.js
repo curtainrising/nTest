@@ -31,7 +31,6 @@ const Back = styled.a`
 `;
 
 const Repository = ({setRepo, data, name}) => {
-  console.log('data',data);
   const handleRowClicked = (key) => {
     window.open(data.ref.target.history.nodes[key].commitUrl, "_blank")
   }

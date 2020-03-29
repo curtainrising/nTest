@@ -46,6 +46,7 @@ docker run --rm -p 8080:8080 --name nTestContainer ntestimage
 - Commits View
   - Click on organization name
     - Returns to Repository Table View
+    - Filter Data should be the same
   - Click on reset authentication button
     - Removes locally stored AuthToken
     - Brings you back to Authentication Page

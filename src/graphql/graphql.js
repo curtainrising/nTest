@@ -30,11 +30,9 @@ const doGraphql = (graphqlQuery, mutate) => {
     [mutate ? 'mutation': 'query']: gql`${graphqlQuery}`
   })
   .then(result => {
-    console.log('finished', result);
     return result;
   })
   .catch(e => {
-    console.log('e',e);
     return e;
   })
 }

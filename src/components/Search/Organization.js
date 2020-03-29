@@ -17,9 +17,9 @@ const FilterForm = styled.div`
 const Organization = ({data, name}) => {
   const [ repo, setRepo ] = useState(null);
   const [ filteredData, setFilteredData ] = useState(arrayToObjByKey(data.nodes, 'id'));
+  const [ filterInfo , setFilterInfo ] = useState([]);
   const filterClicked = (inputData, extraprops) => {
     let tempData = Object.values(filteredData).filter(item => item.name.includes(inputData[0].value))
-    console.log(inputData[1].value);
     if (inputData[1].value === '0') {
       const tempObj = tempData.reduce((acc, item) => {
         acc[item.name] = item
@@ -36,6 +36,7 @@ const Organization = ({data, name}) => {
         }
       })
     }
+    setFilterInfo([inputData[0].value, inputData[1].value]);
     setFilteredData(arrayToObjByKey(tempData, 'id'));
   }
 
@@ -61,7 +62,7 @@ const Organization = ({data, name}) => {
     type: 'list-row-selectable'
   }
   const inputs = [
-    {type: 'input', variable: 'filter', value: ''},
+    {type: 'input', variable: 'filter', value: filterInfo[0] || ''},
     (() => {
       let dropDownOptions = [
         {key:0,value: res.repositoryName},
@@ -72,8 +73,8 @@ const Organization = ({data, name}) => {
         type: 'dropdown',
         variable: `orderBy`,
         options: dropDownOptions,
-        selected: '0',
-        value: '0'
+        selected: filterInfo[1] || '0',
+        value: filterInfo[1] || '0'
       }
     })(),
     {type: 'button', onClick: filterClicked, description: res.filter}

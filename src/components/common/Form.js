@@ -34,7 +34,6 @@ const Form = ({inputs = [], ...props}) => {
     setInputData(temp);
   }
   const requirementSolved = (index) => () => {
-    console.log('here');
     let temp = [...inputData];
     temp[index].required = false;
     setInputData(temp);
