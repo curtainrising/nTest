@@ -1,6 +1,7 @@
+## Running locally
 ```
-docker build -t nTestImage .
-docker run --rm -p 8080:8080 --name nTestContainer nTestImage
+docker build -t ntestimage .
+docker run --rm -p 8080:8080 --name nTestContainer ntestimage
 ```
 
 ## Manual Tests
@@ -50,4 +51,3 @@ docker run --rm -p 8080:8080 --name nTestContainer nTestImage
     - Brings you back to Authentication Page
   - Click on table row
     - Brings you to the commit in github in a separate window
-    
